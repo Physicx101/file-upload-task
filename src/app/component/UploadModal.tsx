@@ -16,7 +16,7 @@ const DO_ENDPOINT = `http://${process.env.S3_BUCKET}/${process.env.DIGITAL_OCEAN
 
 export default function UploadModal({ closeModal, onFileSelected }: Props) {
   const [file, setFile] = React.useState<File | null>(null)
-  const [isUplaoding, setIsUploading] = React.useState<boolean>(false)
+  const [isUploading, setIsUploading] = React.useState<boolean>(false)
   const [uploadedFiles, setUploadedFiles] = React.useState<UploadedFile[]>([])
 
   const inputFileRef = useRef<HTMLInputElement>(null)
@@ -99,11 +99,11 @@ export default function UploadModal({ closeModal, onFileSelected }: Props) {
         <div className="p-6 pt-0 text-center">
           <div
             className="w-full h-[250px] border cursor-pointer mb-5"
-            onDrop={!isUplaoding ? onDropFile : undefined}
+            onDrop={!isUploading ? onDropFile : undefined}
             onDragOver={(event) => event.preventDefault()}
-            onClick={!isUplaoding ? onClickDropFile : undefined}
+            onClick={!isUploading ? onClickDropFile : undefined}
           >
-            <span>{isUplaoding ? 'Uploading File......' : 'Select file or drag here'}</span>
+            <span>{isUploading ? 'Uploading File......' : 'Select file or drag here'}</span>
             <input type="file" accept="*/*" onChange={onChangeFile} ref={inputFileRef} hidden />
           </div>
           <div>
